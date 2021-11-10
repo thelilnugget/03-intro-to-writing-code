@@ -9,7 +9,7 @@ const path = require('path');
 
 function readFile(location)
 {
-    // Code goes here
+    console.log(fs.readFileSync(path.resolve(location), { encoding: 'utf8' }))
 }
 
 //----------------------------------------------------------------------------------------------------------------------
