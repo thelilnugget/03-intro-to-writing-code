@@ -9,7 +9,7 @@ const path = require('path');
 
 function writeFile(location, contents)
 {
-    // Code goes here
+    fs.writeFileSync(path.resolve(__dirname, '..', location), contents);
 }
 
 //----------------------------------------------------------------------------------------------------------------------
