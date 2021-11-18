@@ -9,7 +9,8 @@ const path = require('path');
 
 function readFile(location)
 {
-    // Code goes here
+    const place = fs.readFileSync(path.resolve(__dirname, '..', location), { encoding: 'utf8' });
+    console.log(place)
 }
 
 //----------------------------------------------------------------------------------------------------------------------
