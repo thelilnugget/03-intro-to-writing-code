@@ -88,15 +88,21 @@ function checkForSong()
 {
     // Build a string of the currently pressed keys
 
-    /**** CODE GOES HERE ****/
+    const thePlaceForStrings = currentKeys.join(':');
 
     // Look up any song that matches
 
-    /**** CODE GOES HERE ****/
+    const musics = sounds.songs[thePlaceForStrings];
+
 
     // If a song matches, we print out the song name, play the song, and then clear the `currentKeys` array.
 
-    /**** CODE GOES HERE ****/
+    if(musics)
+    {
+        console.log(musics.name);
+        sounds.playSong(musics.path);
+        clearKeys();
+    }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -110,11 +116,23 @@ console.log('Escape clears the current sequence, as does waiting 2 seconds betwe
 
 keys.on('key', (key) =>
 {
-    // If the key is an arrow key, we need to log the key name, add it to `currentKeys`, check for a matching song, and 
-    // set a timeout. If, instead, escape is pressed, we need to clear `currentKeys`. Finally, if `CTRL + d` is pressed, 
-    // then we need to exit the application.
+    if(['up', 'down', 'right', 'left'].includes(key.name))
+    {
+        console.log(key.name);
+        currentKeys.push(key.name);
+        checkForSong();
+        setKeyTimeout();
+    }
 
-    /**** CODE GOES HERE ****/
+    if(key.name === 'escape')
+    {
+        clearKeys();
+    }
+
+    if(key.ctrl && key.name === 'd')
+    {
+        process.exit();
+    } 
 });
 
 //----------------------------------------------------------------------------------------------------------------------
